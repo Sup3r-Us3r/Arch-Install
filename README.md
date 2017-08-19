@@ -275,3 +275,16 @@ Um display server ou servidor de janela é um programa cuja principal tarefa é 
 ```
 # pacman -S xorg-server xorg-xinit xorg-apps mesa gvfs-mtp
 ```
+
+# INSTALAR DRIVERS GRÁFICOS
+É hora de instalar drivers de vídeo. Eu suponho que você sabe qual GPU você está usando. Se você não sabe qual drive de vídeo você possui, descubra com esse comando:
+```
+# lspci -k | grep -A 2 -i "VGA"
+```
+Instale o que for referente ao seu:
+```
+# pacman -S virtualbox-guest-utils (para Virtualbox)
+# pacman -S xf86-video-amdgpu (para placas Amd Radeon)
+# pacman -S xf86-video-intel (para placas da Intel)
+# pacman -S xf86-video-nouveau (para placas Nvidia) #OpenSource
+```
