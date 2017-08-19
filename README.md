@@ -66,7 +66,7 @@ Se o diretório não existir, o sistema pode ser inicializado no modo **BIOS** o
 `Wifi`
 ```
 # wifi-menu
-# ping -c3 google.com
+# ping -c3 www.google.com
 ```
 
 # PARTICIONAMENTO DE DISCO
@@ -250,4 +250,28 @@ Instalar e configurar o boot-loader **(BIOS)**
 # exit
 # umount -R /mnt
 # reboot
+```
+
+☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰
+
+# PÓS INSTALAÇÃO
+>Após a instalação do Arch Linux a única coisa que os usuários vêem é uma linha de comando sem qualquer servidor X, então o usuário deve instalar o X server, uma área de trabalho e alguns outros aplicativos para fazer seu trabalhos diários.
+
+Logue com seu username e senha:
+```
+$ su
+```
+Conecte a sua rede wireless (Caso tenha)
+```
+# nmtui
+```
+Verificar a conectividade com a internet:
+```
+# ping -c3 www.google.com
+```
+
+# INSTALAR DISPLAY SERVER
+Um display server ou servidor de janela é um programa cuja principal tarefa é coordenar a entrada e saída de seus clientes para o sistema operacional, o hardware e entre eles. Em outras palavras, o display server controla e gerencia os recursos de baixo nível para ajudar a integrar as partes da GUI. Por exemplo, os display server gerenciam o mouse e ajudam a combinar os movimentos do mouse com o cursor e os eventos GUI causados pelo cursor. Mas não se confunda, o servidor de exibição não desenha nada. Eles apenas gerenciam a interface, as bibliotecas, os toolkits e, como você pode ver, eles se comunicam diretamente com o kernel. Vamos usar o [XORG](https://wiki.archlinux.org/index.php/Xorg_(Portugu%C3%AAs))
+```
+# pacman -S xorg-server xorg-xinit xorg-apps mesa gvfs-mtp
 ```
