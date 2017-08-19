@@ -141,14 +141,41 @@ Você deve sempre verificar se a entrada fstab está correta ou não, que será 
 ```
 Se tudo estiver OK você deve ver o root montado.
 
+
 # NOVO SISTEMA
 Agora é hora de mudar para o diretório root recém-instalado para configurá-lo.
 ```
 # arch-chroot /mnt
+# loadkeys br-abnt2
 ```
 
 # CONFIGURAR KEYMAP
 A variável KEYMAP é especificada no arquivo /etc/vconsole.conf . Ele define qual layout de teclado, será usado nos consoles virtuais. Execute este comando:
 ```
+# echo -e 'KEYMAP="br-abnt2.map.gz"' > /etc/vconsole.conf
+```
 
+# CONFIGURAÇÕES DE IDIOMA E FUSO HORÁRIO
+Para configurar o idioma do sistema, execute o seguinte comando:
+```
+# sed -i  '/pt_BR/,+1 s/^#//' /etc/locale.gen
+# locale-gen
+# echo LANG=pt_BR.UTF-8 > /etc/locale.conf
+# export LANG=pt_BR.UTF-8
+```
+Para ver todos os fusos horários disponíveis da América:
+```
+# ls /usr/share/zoneinfo/America
+```
+Agora você pode configurar a sua zona:
+```
+# ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+```
+Vamos agora configurar o relógio do hardware, apenas no caso de termos uma data errada:
+```
+# hwclock --systohc --utc
+```
+Para conferir se a hora está certa:
+```
+# date
 ```
