@@ -43,3 +43,7 @@ Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na 
 
 ------
 
+**`Observação: Caso você necessite instalar via UEFI os comandos estão com o simbolo`** :large_orange_diamond:
+
+`No particionamento UEFI, faça como segue a foto de particionamento UEFI, em seguida monte as partições de acordo com o particionamento feito.`
+
