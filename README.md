@@ -47,3 +47,25 @@ Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na 
 
 `No particionamento UEFI, faça como segue a foto de particionamento UEFI, em seguida monte as partições de acordo com o particionamento feito.`
 
+------
+
+:large_orange_diamond: **Verifique o modo de inicialização: ( UEFI )**
+```
+# efivar -l
+```
+Se este comando listar as **variáveis EFI**, isso significa que você iniciou a operação com sucesso no modo **EFI**. Caso contrário, reinicie no **menu de boot** novamente e selecione o item correto lá, e não o item **legacy-mode**.
+
+Se o diretório não existir, o sistema pode ser inicializado no modo **BIOS** ou **CSM**.
+
+# CONEXÃO COM A INTERNET
+`Ethernet`
+```
+# systemctl start dhcpcd
+# ping -c3 google.com
+```
+`Wifi`
+```
+# wifi-menu
+# ping -c3 google.com
+```
+
