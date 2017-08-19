@@ -49,7 +49,7 @@ Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na 
 
 ------
 
-:large_orange_diamond: **Verifique o modo de inicialização: ( UEFI )**
+:large_orange_diamond: **Verifique o modo de inicialização: (UEFI)**
 ```
 # efivar -l
 ```
