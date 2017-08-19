@@ -11,9 +11,9 @@ autor: Magno Tutor
 
 Este guia destina-se a ajudar alguém a instalar a distribuição Arch Linux  em seu Computador. O guia pressupõe que você tenha alguma familiaridade com o sistema linux e esteja confortável, trabalhando a partir da linha de comando, mas não exige que você seja um especialista. Aprendemos muito fazendo e se você quiser saber mais sobre como o linux opera, o Arch Linux é uma excelente opção por muitas razões.
 
-**Porquê Arch?**
+**Porquê Arch ?**
 
-Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na abordagem e atitude. O [Arch Linux Beginner's Guide](https://wiki.archlinux.org/index.php/Installation_guide_(Portugu%C3%AAs)) descreve esta atitude muito bem isso, ele lhe dá a capacidade de construir o seu sistema a partir do zero
+Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na abordagem e atitude. O [Arch Linux Beginner's Guide](https://wiki.archlinux.org/index.php/Installation_guide_(Portugu%C3%AAs)) descreve esta atitude muito bem isso, ele lhe dá a capacidade de construir o seu sistema a partir do zero.
 
 
 **Os princípios de design por trás do Arch são destinados a mantê-lo simples**
@@ -68,6 +68,7 @@ Se o diretório não existir, o sistema pode ser inicializado no modo **BIOS** o
 # wifi-menu
 # ping -c3 google.com
 ```
+
 # PARTICIONAMENTO DE DISCO
 Vamos usar o cfdisk para a criação das partições
 ```
@@ -79,3 +80,39 @@ Vamos usar o cfdisk para a criação das partições
 <kbd>:large_orange_diamond: Particionamento de Disco **(UEFI)**</kbd>
 
 # FORMATANDO AS PARTIÇÕES
+Se o disco rígido estiver pronto e particionado de acordo com as suas necessidades, pode movê-lo formatando-o.
+
+Formatar a partição sda1 (/root)
+```
+# mkfs.ext4 /dev/sda1
+```
+
+Ativar a partição SWAP
+```
+# mkswap /dev/sda2
+# swapon /dev/sda2
+```
+
+:large_orange_diamond: Formate a partição sdaX (/boot) (UEFI) (Se for UEFI a partição /boot será a sda1)
+```
+# mkfs.ext4 /dev/sda1
+# mkfs.fat -F32 -n BOOT /dev/sda1
+```
+
+# MONTAGEM DAS PARTIÇÕES
+Antes de podermos baixar e instalar os pacotes base do Arch Linux precisamos montar nossas partições e mudar para o nosso diretório root. Afinal, este é onde vamos instalar o Arch Linux.
+
+Montagem da partição root
+```
+# mount -t ext4 /dev/sda1 /mnt
+```
+
+:large_orange_diamond: Agora monte a partição: (/boot) (UEFI)
+```
+# mkdir -p /mnt/boot/efi && mount /dev/sdaX /mnt/boot/efi
+```
+Verifique as partições com este comando
+```
+# lsblk /dev/sdX
+```
+(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
