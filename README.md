@@ -58,12 +58,12 @@ Se este comando listar as **variáveis EFI**, isso significa que você iniciou a
 Se o diretório não existir, o sistema pode ser inicializado no modo **BIOS** ou **CSM**.
 
 # CONEXÃO COM A INTERNET
-`Ethernet`
+Ethernet
 ```
 # systemctl start dhcpcd
 # ping -c3 google.com
 ```
-`Wifi`
+Wifi
 ```
 # wifi-menu
 # ping -c3 www.google.com
@@ -146,7 +146,7 @@ Se tudo estiver OK você deve ver o root montado.
 Agora é hora de mudar para o diretório root recém-instalado para configurá-lo.
 ```
 # arch-chroot /mnt
-# loadkeys br-abnt2
+# loadkeys br-abnt2 (para usar o layout abnt2)
 ```
 
 # CONFIGURAR KEYMAP
@@ -260,6 +260,7 @@ Instalar e configurar o boot-loader **(BIOS)**
 Logue com seu username e senha:
 ```
 $ su
+# loadkeys br-abnt2 (para usar o layout abnt2)
 ```
 Conecte a sua rede wireless (Caso tenha)
 ```
@@ -322,4 +323,64 @@ Espera!!! Eu quero instalar o driver proprietário da **Nvidia/ATI**, qual drive
 Agora, vamos instalar os aplicativos para placa de som:
 ```
 # pacman -S alsa-utils alsa-lib pulseaudio pulseaudio-alsa pavucontrol
+```
+
+# INSTALAR AMBIENTE DE TRABALHO
+Depois de instalar o servidor X você precisa de um ambiente de um Gerenciador de janelas ou Desktop para fazer seus trabalhos diários!
+
+### `Gerenciadores de Janelas`
+
+Instalar I3wm:
+```
+# pacman -S i3
+```
+Instalar Bspwm:
+```
+# pacman -S bspwm sxhkd
+```
+Instalar Dwm:
+```
+# pacman -S dwm
+```
+Instalar Awesome:
+```
+# pacman -S awesome
+```
+
+### `Interfaces Gráficas`
+Instalar Xfce4 Desktop Environment:
+```
+# pacman -S xfce4 
+```
+Instalar Budgie Desktop Environment:
+```
+# pacman -S budgie-desktop
+```
+Instalar GNOME Desktop Environment:
+```
+# pacman -S gnome gnome-extra
+```
+Instalar Cinnamon Desktop Environment:
+```
+# pacman -S cinnamon nemo-fileroller
+```
+Instalar KDE Desktop Environment:
+```
+# pacman -S plasma-desktop kdebase
+```
+Instalar Mate Desktop Environment:
+```
+# pacman -S mate mate-extra
+```
+Instalar Deepin Desktop Environment:
+```
+# pacman -S deepin deepin-extra
+```
+Instalar Enlightenment Desktop Environment:
+```
+# pacman -S enlightenment
+```
+Instalar LXDE Desktop Environment:
+```
+# pacman -S lxde
 ```
