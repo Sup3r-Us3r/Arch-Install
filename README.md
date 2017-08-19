@@ -220,3 +220,34 @@ Permitir que os usuários no grupo wheel, sejam capazes de executar tarefas admi
 ```
 sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
 ```
+
+# INSTALAR BOOT-LOADER (GRUB)
+Instalar e configurar o boot-loader **(BIOS)**
+```
+# mkinitcpio -p linux
+# pacman -S grub
+# grub-install /dev/sdX
+# pacman -S os-prober (Se você estiver inicializando em dual boot)
+# pacman -S intel-ucode (Se você tiver uma CPU Intel, instale o pacote intel-ucode)
+# grub-mkconfig -o /boot/grub/grub.cfg
+```
+:large_orange_diamond: Instalar e configurar o boot-loader **(UEFI)**
+```
+# mkinitcpio -p linux
+# pacman -S grub efibootmgr
+# grub-install /dev/sdX
+# pacman -S os-prober (Se você estiver inicializando em dual boot)
+# pacman -S intel-ucode (Se você tiver uma CPU Intel, instale o pacote intel-ucode)
+# grub-mkconfig -o /boot/grub/grub.cfg
+```
+:large_orange_diamond: Caso der erro ao tentar instalar o grub, tente outro modo: **(UEFI)**
+```
+# grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub --recheck
+```
+
+# DESMONTAR AS PARTIÇÕES E REINICIAR
+```
+# exit
+# umount -R /mnt
+# reboot
+```
