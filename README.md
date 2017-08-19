@@ -125,7 +125,7 @@ Escolher a lista de espelhos mais próxima
 # reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
-# NSTALAR OS PACOTES BASE DO ARCH LINUX
+# INSTALAR OS PACOTES BASE DO ARCH LINUX
 ```
 # pacstrap -i /mnt base base-devel
 ```
@@ -178,4 +178,45 @@ Vamos agora configurar o relógio do hardware, apenas no caso de termos uma data
 Para conferir se a hora está certa:
 ```
 # date
+```
+
+# CONFIGURAR REPOSITÓRIO
+Com este comando habilitamos o repositório multilib:
+```
+# sed -i '/multilib\]/,+1 s/^#//' /etc/pacman.conf
+# pacman -Sy
+```
+
+# DEFINIR HOSTNAME
+```
+# echo arch > /etc/hostname
+```
+
+# CONFIGURANDO A CONEXÃO
+Ethernet:
+```
+# systemctl enable dhcpcd
+```
+Wifi:
+```
+# pacman -S wpa_supplicant wpa_actiond dialog iw networkmanager
+# systemctl enable NetworkManager
+```
+
+# CRIAR USUÁRIO
+* useradd -m -g [initial_group] -G [additional_groups] -s [login_shell] [username]
+```
+# useradd -m -g users -G wheel,storage,power -s /bin/bash ghost
+```
+Em seguida, forneça a senha para este novo usuário executando:
+```
+# passwd ghost
+```
+Não se esqueça de definir também a senha para o usuário **root**:
+```
+# passwd
+```
+Permitir que os usuários no grupo wheel, sejam capazes de executar tarefas administrativas com o sudo:
+```
+sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
 ```
