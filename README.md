@@ -38,7 +38,6 @@ Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na 
 ```
 # dd bs=4M if=/lugar_onde_esta_sua_iso of=/dev/sdX status=progress && sync
 ```
-
 (Substitua o X pela letra do seu dispositivo ex: 'sdc' 'sdd') use: lsblk
 
 ------
@@ -218,7 +217,7 @@ Não se esqueça de definir também a senha para o usuário **root**:
 ```
 Permitir que os usuários no grupo wheel, sejam capazes de executar tarefas administrativas com o sudo:
 ```
-sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
+# sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
 ```
 
 # INSTALAR BOOT-LOADER (GRUB)
@@ -249,10 +248,10 @@ Instalar e configurar o boot-loader **(BIOS)**
 ```
 # exit
 # umount -R /mnt
-# reboot
+# poweroff
 ```
 
-☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰
+☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰
 
 # PÓS INSTALAÇÃO
 >Após a instalação do Arch Linux a única coisa que os usuários vêem é uma linha de comando sem qualquer servidor X, então o usuário deve instalar o X server, uma área de trabalho e alguns outros aplicativos para fazer seu trabalhos diários.
@@ -274,7 +273,7 @@ Verificar a conectividade com a internet:
 # INSTALAR DISPLAY SERVER
 Um display server ou servidor de janela é um programa cuja principal tarefa é coordenar a entrada e saída de seus clientes para o sistema operacional, o hardware e entre eles. Em outras palavras, o display server controla e gerencia os recursos de baixo nível para ajudar a integrar as partes da GUI. Por exemplo, os display server gerenciam o mouse e ajudam a combinar os movimentos do mouse com o cursor e os eventos GUI causados pelo cursor. Mas não se confunda, o servidor de exibição não desenha nada. Eles apenas gerenciam a interface, as bibliotecas, os toolkits e, como você pode ver, eles se comunicam diretamente com o kernel. Vamos usar o [XORG](https://wiki.archlinux.org/index.php/Xorg_(Portugu%C3%AAs))
 ```
-# pacman -S xorg-server xorg-xinit xorg-apps mesa gvfs-mtp
+# pacman -S xorg-server xorg-xinit xorg-apps mesa ttf-dejavu gvfs-mtp
 ```
 
 # INSTALAR DRIVERS GRÁFICOS
@@ -384,3 +383,28 @@ LXDE Desktop Environment:
 ```
 # pacman -S lxde
 ```
+
+# DISPLAY MANAGER OU LOGIN MANAGER
+Por exemplo, se você estiver instalando o Xfce (DE) você notará que não existe um ambiente de login gráfico. Então, isso significa que você pode fazer login usando a linha de comando e, em seguida, iniciar o Xfce ou instalar um gerenciador de login como o LXDM, que - após um login bem-sucedido - iniciará o Xfce para você.
+
+Exemplo: Lxdm
+```
+# pacman -S lxdm
+# systemctl enable lxdm.service
+# reboot
+```
+Existem outras alternativas como: **Gdm**, **Sddm** etc.
+
+# YAOURT
+Alguns pacotes não podem ser encontrados no repositório principal, por isso temos o AUR onde possamos encontra-los e instalá-los, e para fazer isto precisamos adicionar o endereço AUR no final do arquivo /etc/pacman.conf.
+```
+# echo -e "[archlinuxfr]\nSigLevel = Never\nServer=http://repo.archlinux.fr/\$arch" >> /etc/pacman.conf
+# pacman -Sy yaourt
+```
+
+# RECOMENDAÇÕES FINAIS
+Caso use um notebook, você deve instalar os drivers do seu touchpad:
+```
+# pacman -S xf86-input-synaptics
+```
+
