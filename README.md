@@ -68,4 +68,14 @@ Se o diretório não existir, o sistema pode ser inicializado no modo **BIOS** o
 # wifi-menu
 # ping -c3 google.com
 ```
+# PARTICIONAMENTO DE DISCO
+Vamos usar o cfdisk para a criação das partições
+```
+# cfdisk /dev/sdX
+```
+(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb') use: lsblk
 
+<kbd>Particionamento de Disco **BIOS**</kbd>
+<kbd>:large_orange_diamond: Particionamento de Disco **(UEFI)**</kbd>
+
+# FORMATANDO AS PARTIÇÕES
