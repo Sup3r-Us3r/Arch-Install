@@ -158,7 +158,7 @@ A variável KEYMAP é especificada no arquivo /etc/vconsole.conf . Ele define qu
 # CONFIGURAÇÕES DE IDIOMA E FUSO HORÁRIO
 Para configurar o idioma do sistema, execute o seguinte comando:
 ```
-# sed -i  '/pt_BR/,+1 s/^#//' /etc/locale.gen
+# sed -i '/pt_BR/,+1 s/^#//' /etc/locale.gen
 # locale-gen
 # echo LANG=pt_BR.UTF-8 > /etc/locale.conf
 # export LANG=pt_BR.UTF-8
@@ -330,57 +330,57 @@ Depois de instalar o servidor X você precisa de um ambiente de um Gerenciador d
 
 ### `Gerenciadores de Janelas`
 
-Instalar I3wm:
+I3wm:
 ```
 # pacman -S i3
 ```
-Instalar Bspwm:
+Bspwm:
 ```
 # pacman -S bspwm sxhkd
 ```
-Instalar Dwm:
+Dwm:
 ```
 # pacman -S dwm
 ```
-Instalar Awesome:
+Awesome:
 ```
 # pacman -S awesome
 ```
 
 ### `Interfaces Gráficas`
-Instalar Xfce4 Desktop Environment:
+Xfce4 Desktop Environment:
 ```
 # pacman -S xfce4 
 ```
-Instalar Budgie Desktop Environment:
+Budgie Desktop Environment:
 ```
 # pacman -S budgie-desktop
 ```
-Instalar GNOME Desktop Environment:
+GNOME Desktop Environment:
 ```
 # pacman -S gnome gnome-extra
 ```
-Instalar Cinnamon Desktop Environment:
+Cinnamon Desktop Environment:
 ```
 # pacman -S cinnamon nemo-fileroller
 ```
-Instalar KDE Desktop Environment:
+KDE Desktop Environment:
 ```
 # pacman -S plasma-desktop kdebase
 ```
-Instalar Mate Desktop Environment:
+Mate Desktop Environment:
 ```
 # pacman -S mate mate-extra
 ```
-Instalar Deepin Desktop Environment:
+Deepin Desktop Environment:
 ```
 # pacman -S deepin deepin-extra
 ```
-Instalar Enlightenment Desktop Environment:
+Enlightenment Desktop Environment:
 ```
 # pacman -S enlightenment
 ```
-Instalar LXDE Desktop Environment:
+LXDE Desktop Environment:
 ```
 # pacman -S lxde
 ```
