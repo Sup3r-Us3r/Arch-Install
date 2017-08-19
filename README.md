@@ -288,3 +288,12 @@ Instale o que for referente ao seu:
 # pacman -S xf86-video-intel (para placas da Intel)
 # pacman -S xf86-video-nouveau (para placas Nvidia) #OpenSource
 ```
+Espera!!! Eu quero instalar o driver proprietário da **Nvidia/ATI**, qual driver devo instalar?
+## Nvidia
+* Instale o driver apropriado para a sua placa:
+  * Para placas da série **GeForce 400 ou mais recentes** [NVCx ou mais recente], instale o pacote **nvidia** ou **nvidia-lts** disponível nos repositórios oficiais.
+  * Para placas da série **GeForce 8/9 e 100-300** [NV5x, NV8x, NV9x e NVAx], instale o pacote **nvidia-340xx** ou **nvidia-340xx-lts** disponível nos repositórios oficiais.
+  * Para placas da série **GeForce 6/7** [NV4x e NV6x], instale o pacote **nvidia-304xx** ou **nvidia-304xx-lts** disponível nos repositórios oficiais.
+  * Para os modelos GPU **mais recentes**, pode ser necessário instalar **nvidia-beta** do **Arch User Repository**, uma vez que os drivers estáveis podem não suportar os recursos recém-introduzidos.
+  * Se você estiver com sistema de **64 bits** você também precisa de um suporte OpenGL de 32 bits, você também deve instalar o pacote lib32 equivalente do repositório multilib (e.g. **lib32-nvidia-libgl**, **lib32-nvidia-340xx-libgl** ou **lib32-nvidia-304xx-libgl**).
+
