@@ -116,3 +116,39 @@ Verifique as partições com este comando
 # lsblk /dev/sdX
 ```
 (Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
+
+# ESCOLHER O ESPELHO DE DOWNLOAD
+Escolher a lista de espelhos mais próxima
+```
+# pacman -Sy
+# pacman -S reflector
+# reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+```
+
+# NSTALAR OS PACOTES BASE DO ARCH LINUX
+```
+# pacstrap -i /mnt base base-devel
+```
+
+# CONFIGURAR O FSTAB
+Para configurar fstab (tabela de sistemas de arquivos) execute:
+```
+# genfstab -U -p /mnt >> /mnt/etc/fstab
+```
+Você deve sempre verificar se a entrada fstab está correta ou não, que será capaz de inicializar em seu sistema. Para verificar a entrada fstab, execute:
+```
+# cat /mnt/etc/fstab
+```
+Se tudo estiver OK você deve ver o root montado.
+
+# NOVO SISTEMA
+Agora é hora de mudar para o diretório root recém-instalado para configurá-lo.
+```
+# arch-chroot /mnt
+```
+
+# CONFIGURAR KEYMAP
+A variável KEYMAP é especificada no arquivo /etc/vconsole.conf . Ele define qual layout de teclado, será usado nos consoles virtuais. Execute este comando:
+```
+
+```
