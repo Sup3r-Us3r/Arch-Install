@@ -151,6 +151,7 @@ Swap:
 Antes de podermos baixar, e instalar os pacotes base do Arch Linux, precisamos montar nossas partições, e mudar para o nosso diretório root. Afinal, é nele onde vamos instalar o Arch Linux.
 
 ### Montar `/root` **(BIOS)**
+Root:
 ```
 # mount -t ext4 /dev/sda1 /mnt
 ```
@@ -165,12 +166,6 @@ Root:
 ```
 # mount /dev/sda3 /mnt
 ```
-
-Verifique as partições com este comando
-```
-# lsblk /dev/sdX
-```
-(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
 
 # ESCOLHER O ESPELHO DE DOWNLOAD
 Escolher a lista de espelhos mais próxima
