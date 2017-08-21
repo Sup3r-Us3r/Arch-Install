@@ -16,7 +16,7 @@ Este guia destina-se a ajudar alguém a instalar a distribuição Arch Linux  em
 Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na abordagem e atitude. O [Arch Linux Beginner's Guide](https://wiki.archlinux.org/index.php/Installation_guide_(Portugu%C3%AAs)) descreve esta atitude muito bem isso, ele lhe dá a capacidade de construir o seu sistema a partir do zero.
 
 
-**Os princípios de design por trás do Arch são destinados a mantê-lo simples**
+**Os princípios de design por trás do Arch são destinados a mantê-lo simples:**
 
 >«Simples», neste contexto, significa «sem adições, modificações ou complicações desnecessárias». Em resumo; Uma abordagem elegante e minimalista.
 
@@ -69,7 +69,7 @@ Wifi
 ```
 
 # PARTICIONAMENTO DE DISCO
-<kbd>Particionar Disco **(BIOS)**</kbd>
+### Particionar Disco **(BIOS)**
 ```
 # fdisk -l
 # cfdisk /dev/sdX
@@ -77,7 +77,7 @@ Wifi
 (Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
 ![bios](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20bios.gif)
 
-<kbd>:large_orange_diamond: Particionar Disco **(UEFI)**</kbd>
+### :large_orange_diamond: Particionar Disco **(UEFI)**
 ```
 # fdisk -l
 # sgdisk --zap-all /dev/sdX
@@ -91,6 +91,9 @@ Vamos utilizar o **gdisk** para a criação das partições `/boot` `/swap` `/ro
 ```
 (Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
 
+**Logo em seguida você entrará na interface do gdisk, onde deverá particionar o disco, ele possui uma interface simples mas eficaz, basta seguir o exemplo abaixo:**
+
+```
 Command (? for help): o
 Proceed? (Y/N): Aperte Y e ENTER
 Para criar nova partição:
@@ -99,18 +102,24 @@ Partition number: Enter
 First sector: Enter
 Last sector: +300M
 Hex Code or GUID: EF00
-Acima criamos uma partição com 300Mb de espaço e do tipo EFI, para nossa partição de boot.
+```
+>Acima criamos uma partição com 300Mb de espaço, do tipo EFI, para nossa partição de boot.
+```
 Command (? for help): n
 Partition number: Enter
 First sector: Enter
-Last sector: +4G
+Last sector: +2G
 Hex Code or GUID: 8200
-Acima, criamos a nossa partição SWAP com 4gb de espaço.
+```
+>Acima, criamos a nossa partição SWAP com 2gb de espaço.
+```
 Command (? for help): n
 Partition number: Enter
 First sector: Enter
-Last sector: +50G
+Last sector: Enter
 Hex Code or GUID: 8300
+```
+>Esta última partição criada, é a root, não daremos tamanho para ela, só aperte ENTER, que o gdisk entenderá que é pra aproveitar todo o restante do HD.
 
 ![uefi](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20uefi.gif)
 
