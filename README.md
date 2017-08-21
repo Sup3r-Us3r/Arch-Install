@@ -119,42 +119,53 @@ First sector: Enter
 Last sector: Enter
 Hex Code or GUID: 8300
 ```
->Esta última partição criada, é a root, não daremos tamanho para ela, só aperte ENTER, que o gdisk entenderá que é pra aproveitar todo o restante do HD.
+>Esta última partição criada é a root, não daremos tamanho para ela, só aperte ENTER, que o gdisk entenderá que é pra aproveitar todo o restante do HD.
 
 ![uefi](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20uefi.gif)
 
-# FORMATANDO AS PARTIÇÕES
-Se o disco rígido estiver pronto e particionado de acordo com as suas necessidades, pode movê-lo formatando-o.
-
-Formatar a partição sda1 (/root)
+# FORMATAR AS PARTIÇÕES
+Após o particionameto do disco rígido, devemos formatar as partições.
+### Formatar `/root` `/swap` **(BIOS)**
+Root:
 ```
 # mkfs.ext4 /dev/sda1
 ```
-
-Ativar a partição SWAP
+Swap:
 ```
 # mkswap /dev/sda2
 # swapon /dev/sda2
 ```
 
-:large_orange_diamond: Formate a partição sdaX (/boot) (UEFI) (Se for UEFI a partição /boot será a sda1)
+### :large_orange_diamond: Formatar `/boot` `/swap` `/root` **(UEFI)**
+Boot:
 ```
-# mkfs.ext4 /dev/sda1
-# mkfs.fat -F32 -n BOOT /dev/sda1
+# mkfs.vfat -F32 /dev/sda1
+```
+Swap:
+```
+# mkswap /dev/sda2
+# swapon /dev/sda2
 ```
 
 # MONTAGEM DAS PARTIÇÕES
-Antes de podermos baixar e instalar os pacotes base do Arch Linux precisamos montar nossas partições e mudar para o nosso diretório root. Afinal, este é onde vamos instalar o Arch Linux.
+Antes de podermos baixar, e instalar os pacotes base do Arch Linux, precisamos montar nossas partições, e mudar para o nosso diretório root. Afinal, é nele onde vamos instalar o Arch Linux.
 
-Montagem da partição root
+### Montar `/root` **(BIOS)**
 ```
 # mount -t ext4 /dev/sda1 /mnt
 ```
 
-:large_orange_diamond: Agora monte a partição: (/boot) (UEFI)
+### :large_orange_diamond: Montar `/boot` `/root` **(UEFI)**
+Boot:
 ```
-# mkdir -p /mnt/boot/efi && mount /dev/sdaX /mnt/boot/efi
+# mkdir -p /mnt/boot/efi
+# mount /dev/sda1 /mnt/boot/efi
 ```
+Root:
+```
+# mount /dev/sda3 /mnt
+```
+
 Verifique as partições com este comando
 ```
 # lsblk /dev/sdX
