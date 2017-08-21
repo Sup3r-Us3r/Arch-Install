@@ -69,14 +69,50 @@ Wifi
 ```
 
 # PARTICIONAMENTO DE DISCO
-Vamos usar o cfdisk para a criação das partições
+<kbd>Particionar Disco **(BIOS)**</kbd>
 ```
+# fdisk -l
 # cfdisk /dev/sdX
 ```
-(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb') use: lsblk
+(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
+![bios](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20bios.gif)
 
-<kbd>Particionamento de Disco **BIOS**</kbd>
-<kbd>:large_orange_diamond: Particionamento de Disco **(UEFI)**</kbd>
+<kbd>:large_orange_diamond: Particionar Disco **(UEFI)**</kbd>
+```
+# fdisk -l
+# sgdisk --zap-all /dev/sdX
+```
+(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
+
+Primeiro, devemos criar uma nova tabela de partição, no caso será GPT, para o suporte à UEFI.
+Vamos utilizar o **gdisk** para a criação das partições `/boot` `/swap` `/root`
+```
+# gdisk /dev/sdX
+```
+(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
+
+Command (? for help): o
+Proceed? (Y/N): Aperte Y e ENTER
+Para criar nova partição:
+Command (? for help): n
+Partition number: Enter
+First sector: Enter
+Last sector: +300M
+Hex Code or GUID: EF00
+Acima criamos uma partição com 300Mb de espaço e do tipo EFI, para nossa partição de boot.
+Command (? for help): n
+Partition number: Enter
+First sector: Enter
+Last sector: +4G
+Hex Code or GUID: 8200
+Acima, criamos a nossa partição SWAP com 4gb de espaço.
+Command (? for help): n
+Partition number: Enter
+First sector: Enter
+Last sector: +50G
+Hex Code or GUID: 8300
+
+![uefi](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20uefi.gif)
 
 # FORMATANDO AS PARTIÇÕES
 Se o disco rígido estiver pronto e particionado de acordo com as suas necessidades, pode movê-lo formatando-o.
