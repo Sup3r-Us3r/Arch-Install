@@ -58,21 +58,22 @@ Se este comando listar as **variáveis EFI**, isso significa que você iniciou a
 Se o diretório não existir, o sistema pode ser inicializado no modo **BIOS** ou **CSM**.
 
 # CONEXÃO COM A INTERNET
-Ethernet
+Ethernet:
 ```
 # systemctl start dhcpcd
 # ping -c3 google.com
 ```
-Wifi
+Wifi:
 ```
 # wifi-menu
 # ping -c3 www.google.com
 ```
 
 # PARTICIONAMENTO DE DISCO
-⚠ ATENÇÃO ⚠
-Como cenário para esse tutorial, eu usei maquina virtual com apenas 8GB, onde dei 
 ### Particionar Disco **(BIOS)**
+* Aconselha-se dar:
+  * /swap = 4gb
+  * /raiz = Todo o restante do HD
 ```
 # fdisk -l
 # cfdisk /dev/sdX
@@ -82,48 +83,54 @@ Como cenário para esse tutorial, eu usei maquina virtual com apenas 8GB, onde d
 ![bios](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20bios.gif)
 
 ### 🔶 Particionar Disco **(UEFI)**
+* Aconselha-se dar:
+  * /boot = 300mb
+  * /swap = 4gb
+  * /raiz = Todo o restante do HD
 ```
 # fdisk -l
 # sgdisk --zap-all /dev/sdX
 ```
 **(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')**
 
-Primeiro, devemos criar uma nova tabela de partição, no caso será GPT, para o suporte à UEFI.
+Primeiro, devemos criar uma nova tabela de partição, no caso será **GPT**, para o suporte à **UEFI**.
 Vamos utilizar o **gdisk** para a criação das partições `/boot` `/swap` `/root`
 ```
 # gdisk /dev/sdX
 ```
 **(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')**
 
-**Logo em seguida você entrará na interface do gdisk, onde deverá particionar o disco, ele possui uma interface simples mas eficaz, basta seguir o exemplo abaixo:**
+> Logo em seguida você entrará na interface do gdisk, onde deverá particionar o disco, ele possui uma interface simples mas eficaz, basta seguir o exemplo abaixo:
 
 ```
 Command (? for help): o
-Proceed? (Y/N): Aperte Y e ENTER
+Proceed? (Y/N): Y
+
 Para criar nova partição:
+
 Command (? for help): n
-Partition number: Enter
+Partition number: Aperte Enter
 First sector: Enter
 Last sector: +300M
 Hex Code or GUID: EF00
 ```
->Acima criamos uma partição com 300Mb de espaço, do tipo EFI, para nossa partição de boot.
+> Acima criamos uma partição com 300Mb de espaço **(não precisa mais que 300mb para essa partição)** do tipo EFI, para nossa partição de boot.
 ```
 Command (? for help): n
-Partition number: Enter
+Partition number: Aperte Enter
 First sector: Enter
 Last sector: +2G
 Hex Code or GUID: 8200
 ```
->Acima, criamos a nossa partição SWAP com 2gb de espaço.
+> Acima, criamos a nossa partição SWAP com 2gb de espaço, **(o swap é uma memória virtual recomendo dar no máximo 4gb)**.
 ```
 Command (? for help): n
-Partition number: Enter
-First sector: Enter
-Last sector: Enter
+Partition number: Aperte Enter
+First sector: Aperte Enter
+Last sector: Aperte Enter
 Hex Code or GUID: 8300
 ```
-> Esta última partição criada é a root, não daremos tamanho para ela, só aperte ENTER, que o gdisk entenderá que é pra aproveitar todo o restante do HD.
+> Esta última partição criada é a root, não daremos tamanho para ela, só aperte ENTER, que o gdisk entenderá que é pra aproveitar todo o restante do HD **(essa partição servirá para a instalação do sistema, seus arquivos pessoais, programas etc)**.
 
 ![uefi](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20uefi.gif)
 
