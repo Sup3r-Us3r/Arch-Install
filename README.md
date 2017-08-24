@@ -76,7 +76,7 @@ Wifi:
 
 # PARTICIONAMENTO DE DISCO
 ### Particionar Disco **(BIOS)**
-* Aconselha-se dar:
+* Aconselha-se dar
   * /swap = 4gb
   * /raiz = Todo o restante do HD
 ```
@@ -88,7 +88,7 @@ Wifi:
 ![bios](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20bios.gif)
 
 ### 🔶 Particionar Disco **(UEFI)**
-* Aconselha-se dar:
+* Aconselha-se dar
   * /boot = 300mb
   * /swap = 4gb
   * /raiz = Todo o restante do HD
