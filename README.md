@@ -29,22 +29,23 @@ Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na 
 
 ------
 
-* Faça o download do Arch Linux: [AQUI](https://www.archlinux.org/download/)
+* Faça o download do Arch Linux: [Baixar](https://www.archlinux.org/download/)
 
-* Para criar um USB bootable no Linux/Windows use o: [Etcher](https://etcher.io/) ou [Rufus](https://rufus.akeo.ie) [Win32DiskImager](https://sourceforge.net/projects/win32diskimager/)
-
+* Para criar um USB bootable no:
+  * Linux: [Etcher](https://etcher.io/) - [RosaImageWriter](http://wiki.rosalab.com/en/index.php/ROSA_ImageWriter)
+  * Windows: [Rufus](https://rufus.akeo.ie) - [Win32DiskImager](https://sourceforge.net/projects/win32diskimager/)
 * Para criar um USB bootable usando o comando (dd) no Linux:
-
 ```
 # dd bs=4M if=/lugar_onde_esta_sua_iso of=/dev/sdX status=progress && sync
 ```
-(Substitua o X pela letra do seu dispositivo ex: 'sdc' 'sdd') use: lsblk
+**(Substitua o X pela letra do seu dispositivo ex: 'sdc' 'sdd') use: lsblk**
 
 ------
 
 ## OBSERVAÇÕES:
 * Caso você necessite instalar via UEFI os comandos estão com o simbolo: 🔶
-  * No particionamento UEFI, faça como segue a foto de particionamento UEFI, em seguida monte as partições de acordo com o particionamento feito.
+* No particionamento BIOS e UEFI, faça como segue o exemplo, modifique apenas o tamanho das partições, em seguida monte as partições de acordo com o particionamento feito.
+* Preste muita atenção em relação a sua unidade do disco rígido, pois isso vai variar de computador parar computador.
 
 ------
 
@@ -69,12 +70,15 @@ Wifi
 ```
 
 # PARTICIONAMENTO DE DISCO
+⚠ ATENÇÃO ⚠
+Como cenário para esse tutorial, eu usei maquina virtual com apenas 8GB, onde dei 
 ### Particionar Disco **(BIOS)**
 ```
 # fdisk -l
 # cfdisk /dev/sdX
 ```
-(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
+**(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')**
+
 ![bios](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20bios.gif)
 
 ### 🔶 Particionar Disco **(UEFI)**
@@ -82,14 +86,14 @@ Wifi
 # fdisk -l
 # sgdisk --zap-all /dev/sdX
 ```
-(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
+**(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')**
 
 Primeiro, devemos criar uma nova tabela de partição, no caso será GPT, para o suporte à UEFI.
 Vamos utilizar o **gdisk** para a criação das partições `/boot` `/swap` `/root`
 ```
 # gdisk /dev/sdX
 ```
-(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
+**(Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')**
 
 **Logo em seguida você entrará na interface do gdisk, onde deverá particionar o disco, ele possui uma interface simples mas eficaz, basta seguir o exemplo abaixo:**
 
@@ -119,7 +123,7 @@ First sector: Enter
 Last sector: Enter
 Hex Code or GUID: 8300
 ```
->Esta última partição criada é a root, não daremos tamanho para ela, só aperte ENTER, que o gdisk entenderá que é pra aproveitar todo o restante do HD.
+> Esta última partição criada é a root, não daremos tamanho para ela, só aperte ENTER, que o gdisk entenderá que é pra aproveitar todo o restante do HD.
 
 ![uefi](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20uefi.gif)
 
