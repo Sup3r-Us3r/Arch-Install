@@ -23,15 +23,15 @@ Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na 
 
 **Alguns pensamentos a ter em mente ao considerar a simplicidade:**
 
->"Simples" é definido de um ponto de vista técnico, não um ponto de vista de usabilidade. É melhor ser tecnicamente elegante com uma curva de aprendizado mais alta, do que ser fácil de usar e tecnicamente [inferior]. "- Aaron Griffin
+> "Simples" é definido de um ponto de vista técnico, não um ponto de vista de usabilidade. É melhor ser tecnicamente elegante com uma curva de aprendizado mais alta, do que ser fácil de usar e tecnicamente [inferior]. "- Aaron Griffin
 
->"A parte extraordinária de [meu método] reside em sua simplicidade ... A altura do cultivo sempre corre para a simplicidade". - Bruce Lee
+> "A parte extraordinária de [meu método] reside em sua simplicidade ... A altura do cultivo sempre corre para a simplicidade". - Bruce Lee
 
 ------
 
-* Faça o download do Arch Linux: <kbd>[AQUI](https://www.archlinux.org/download/)</kbd>
+* Faça o download do Arch Linux: [AQUI](https://www.archlinux.org/download/)
 
-* Para criar um USB bootable no Linux/Windows use o: <kbd>[Etcher](https://etcher.io/)</kbd> ou <kbd>[Rufus](https://rufus.akeo.ie)</kbd> - <kbd>[Win32DiskImager](https://sourceforge.net/projects/win32diskimager/)</kbd>
+* Para criar um USB bootable no Linux/Windows use o: [Etcher](https://etcher.io/) ou [Rufus](https://rufus.akeo.ie) [Win32DiskImager](https://sourceforge.net/projects/win32diskimager/)
 
 * Para criar um USB bootable usando o comando (dd) no Linux:
 
@@ -43,12 +43,12 @@ Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na 
 ------
 
 ## OBSERVAÇÕES:
-* Caso você necessite instalar via UEFI os comandos estão com o simbolo: :large_orange_diamond:
+* Caso você necessite instalar via UEFI os comandos estão com o simbolo: 🔶
   * No particionamento UEFI, faça como segue a foto de particionamento UEFI, em seguida monte as partições de acordo com o particionamento feito.
 
 ------
 
-:large_orange_diamond: **Verifique o modo de inicialização: (UEFI)**
+🔶 **Verifique o modo de inicialização: (UEFI)**
 ```
 # efivar -l
 ```
@@ -77,7 +77,7 @@ Wifi
 (Substitua o X pela letra do seu disco rígido ex: 'sda' 'sdb')
 ![bios](https://raw.githubusercontent.com/Sup3r-Us3r/Arch-Install/master/Particionamento%20de%20Disco/parti%C3%A7%C3%B5es%20bios.gif)
 
-### :large_orange_diamond: Particionar Disco **(UEFI)**
+### 🔶 Particionar Disco **(UEFI)**
 ```
 # fdisk -l
 # sgdisk --zap-all /dev/sdX
@@ -136,7 +136,7 @@ Swap:
 # swapon /dev/sda2
 ```
 
-### :large_orange_diamond: Formatar `/boot` `/swap` `/root` **(UEFI)**
+### 🔶 Formatar `/boot` `/swap` `/root` **(UEFI)**
 Boot:
 ```
 # mkfs.vfat -F32 /dev/sda1
@@ -156,7 +156,7 @@ Root:
 # mount -t ext4 /dev/sda1 /mnt
 ```
 
-### :large_orange_diamond: Montar `/boot` `/root` **(UEFI)**
+### 🔶 Montar `/boot` `/root` **(UEFI)**
 Boot:
 ```
 # mkdir -p /mnt/boot/efi
@@ -281,7 +281,7 @@ Instalar e configurar o boot-loader **(BIOS)**
 # pacman -S intel-ucode (Se você tiver uma CPU Intel, instale o pacote intel-ucode)
 # grub-mkconfig -o /boot/grub/grub.cfg
 ```
-:large_orange_diamond: Instalar e configurar o boot-loader **(UEFI)**
+🔶 Instalar e configurar o boot-loader **(UEFI)**
 ```
 # mkinitcpio -p linux
 # pacman -S grub efibootmgr
@@ -290,7 +290,7 @@ Instalar e configurar o boot-loader **(BIOS)**
 # pacman -S intel-ucode (Se você tiver uma CPU Intel, instale o pacote intel-ucode)
 # grub-mkconfig -o /boot/grub/grub.cfg
 ```
-:large_orange_diamond: Caso der erro ao tentar instalar o grub, tente outro modo: **(UEFI)**
+🔶 Caso der erro ao tentar instalar o grub, tente outro modo: **(UEFI)**
 ```
 # grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub --recheck
 ```
@@ -301,8 +301,6 @@ Instalar e configurar o boot-loader **(BIOS)**
 # umount -R /mnt
 # poweroff
 ```
-
-☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰
 
 # PÓS INSTALAÇÃO
 >Após a instalação do Arch Linux a única coisa que os usuários vêem é uma linha de comando sem qualquer servidor X, então o usuário deve instalar o X server, uma área de trabalho e alguns outros aplicativos para fazer seu trabalhos diários.
@@ -341,7 +339,7 @@ Instale o que for referente ao seu:
 ```
 Espera!!! Eu quero instalar o driver proprietário da **Nvidia/ATI**, qual driver devo instalar?
 ## Nvidia
-### :white_check_mark: Instale o driver apropriado para a sua placa:
+### ✅ Instale o driver apropriado para a sua placa:
   
   * Para placas da série **GeForce 400 ou mais recentes** [NVCx ou mais recente], instale o pacote `nvidia` ou `nvidia-lts` disponível nos repositórios oficiais.
   
@@ -354,7 +352,7 @@ Espera!!! Eu quero instalar o driver proprietário da **Nvidia/ATI**, qual drive
   * Se você estiver com sistema de `64 bits` você também precisa de um suporte OpenGL de 32 bits, você também deve instalar o pacote lib32 equivalente do repositório multilib (e.g. `lib32-nvidia-libgl`, `lib32-nvidia-340xx-libgl` ou `lib32-nvidia-304xx-libgl` ).
   
 ## Ati
- ### :white_check_mark: O driver xf86-video-ati (radeon):
+ ### ✅ O driver xf86-video-ati (radeon):
    * Funciona com chipsets Radeon até HD 6xxx e 7xxxM (latest Northern Islands chipsets).
    
    * Radeons no HD 77xx  (Southern Islands) as séries são principalmente suportadas. Verifique a matriz de recursos para recursos não suportados.
