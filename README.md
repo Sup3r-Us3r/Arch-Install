@@ -49,13 +49,18 @@ Uma das maiores vantagens da distribuição Arch Linux é a sua simplicidade na 
 
 ------
 
-🔶 **Verifique o modo de inicialização: (UEFI)**
+# 🔶 VERIFIQUE O MODO DE INICIALIZAÇÃO: (UEFI)
 ```
 # efivar -l
 ```
 Se este comando listar as **variáveis EFI**, isso significa que você iniciou a operação com sucesso no modo **EFI**. Caso contrário, reinicie no **menu de boot** novamente e selecione o item correto lá, e não o item **legacy-mode**.
 
 Se o diretório não existir, o sistema pode ser inicializado no modo **BIOS** ou **CSM**.
+
+# TECLADO EM ABNT2
+```
+# loadkeys br-abnt2
+```
 
 # CONEXÃO COM A INTERNET
 Ethernet:
@@ -181,8 +186,7 @@ Root:
 # ESCOLHER O ESPELHO DE DOWNLOAD
 Escolher a lista de espelhos mais próxima
 ```
-# pacman -Sy
-# pacman -S reflector
+# pacman -Sy reflector
 # reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
@@ -265,7 +269,7 @@ Wifi:
 ```
 
 # CRIAR USUÁRIO
-* useradd -m -g [initial_group] -G [additional_groups] -s [login_shell] [username]
+> useradd -m -g [initial_group] -G [additional_groups] -s [login_shell] [username]
 ```
 # useradd -m -g users -G wheel,storage,power -s /bin/bash ghost
 ```
@@ -316,7 +320,7 @@ Instalar e configurar o boot-loader **(BIOS)**
 # PÓS INSTALAÇÃO
 >Após a instalação do Arch Linux a única coisa que os usuários vêem é uma linha de comando sem qualquer servidor X, então o usuário deve instalar o X server, uma área de trabalho e alguns outros aplicativos para fazer seu trabalhos diários.
 
-Logue com seu username e senha:
+Logue com seu **usuário** e **senha**:
 ```
 $ su
 # loadkeys br-abnt2 (para usar o layout abnt2)
